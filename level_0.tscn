@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://dnpvme1o06ysy"]
+
+[ext_resource type="Material" uid="uid://d3n7uhvhe5jah" path="res://world/grass_ground_material.tres" id="1_smnfn"]
+[ext_resource type="PackedScene" uid="uid://dk8qg0kxst2k5" path="res://robot.tscn" id="1_vfa6b"]
+[ext_resource type="ArrayMesh" uid="uid://dc6ty4t0wyttc" path="res://player/possum.obj" id="3_nu7sl"]
+[ext_resource type="ArrayMesh" uid="uid://8g00osvqdnwo" path="res://world/grass_mesh.obj" id="4_omks2"]
+
+[sub_resource type="Gradient" id="Gradient_wwd78"]
+colors = PackedColorArray(0.26448134, 0.42514774, 0.17639181, 1, 0.60784316, 0.7529412, 0.2627451, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_40rfo"]
+gradient = SubResource("Gradient_wwd78")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eomlm"]
+albedo_texture = SubResource("GradientTexture1D_40rfo")
+
+[sub_resource type="Environment" id="Environment_smnfn"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9008789, 0, 0.7585144)
+use_collision = true
+size = Vector3(6.879883, 1, 9.211365)
+material = ExtResource("1_smnfn")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9807137, -0.19544978, 0, 0.19544978, 0.9807137, -1.0254743, 0.3057015, -2.3932037)
+material_override = ExtResource("1_smnfn")
+use_collision = true
+size = Vector3(6.879883, 1, 2.9079285)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96590114, 1.737793, 3.8467226)
+use_collision = true
+size = Vector3(6.879883, 4.475586, 1.8757324)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+operation = 2
+radius = 1.9912109
+
+[node name="Robot" parent="." instance=ExtResource("1_vfa6b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75506115, 2.5382016, -2.6991997)
+
+[node name="Robot2" parent="." instance=ExtResource("1_vfa6b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9196925, 2.5382016, -2.6991997)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.321411, 2.381308, 0.6700646)
+
+[node name="Possum" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0756073, 0.51951, 0.31590307)
+mesh = ExtResource("3_nu7sl")
+
+[node name="GrassMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7396307, 0.49999988, -0.005893111)
+mesh = ExtResource("4_omks2")
+surface_material_override/0 = SubResource("StandardMaterial3D_eomlm")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_smnfn")

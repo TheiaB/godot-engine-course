@@ -12,4 +12,9 @@ config_version=5
 
 config/name="Godot Engine Course"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://plvws2x35a8r"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720

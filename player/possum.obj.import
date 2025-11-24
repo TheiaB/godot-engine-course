@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dc6ty4t0wyttc"
+path="res://.godot/imported/possum.obj-1bb7dede04a32aad4adbd4024af57eb1.mesh"
+
+[deps]
+
+files=["res://.godot/imported/possum.obj-1bb7dede04a32aad4adbd4024af57eb1.mesh"]
+
+source_file="res://player/possum.obj"
+dest_files=["res://.godot/imported/possum.obj-1bb7dede04a32aad4adbd4024af57eb1.mesh", "res://.godot/imported/possum.obj-1bb7dede04a32aad4adbd4024af57eb1.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
