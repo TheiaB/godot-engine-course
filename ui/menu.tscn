@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cscjxidxmqwtl"]
+[gd_scene load_steps=6 format=3 uid="uid://cscjxidxmqwtl"]
 
+[ext_resource type="Script" uid="uid://bkvqay5t1pd2c" path="res://ui/menu.gd" id="1_2ot4n"]
 [ext_resource type="Texture2D" uid="uid://c7xghjttrafmn" path="res://ui/menu-background.png" id="1_4c782"]
 [ext_resource type="Texture2D" uid="uid://kive7flvhu6h" path="res://ui/menu-logo.png" id="2_2ot4n"]
+[ext_resource type="PackedScene" uid="uid://dnpvme1o06ysy" path="res://levels/level_0.tscn" id="2_fcydj"]
 [ext_resource type="Texture2D" uid="uid://bmk3fm1d70i03" path="res://ui/menu-possum.png" id="3_fcydj"]
 
 [node name="Control" type="Control"]
@@ -11,6 +13,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_2ot4n")
+level = ExtResource("2_fcydj")
 
 [node name="Background" type="TextureRect" parent="."]
 modulate = Color(0.7357967, 0.7357967, 0.7357967, 1)
@@ -49,10 +53,12 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="PlayButton" type="Button" parent="VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Play"
 
 [node name="VolumeLabel" type="Label" parent="VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Volume"
 
@@ -79,3 +85,7 @@ grow_vertical = 2
 texture = ExtResource("3_fcydj")
 expand_mode = 3
 stretch_mode = 5
+
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="value_changed" from="VBoxContainer/VBoxContainer/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
