@@ -18,3 +18,8 @@ config/icon="uid://plvws2x35a8r"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+
+[gui]
+
+theme/custom="uid://cylhj728sm3tn"
+theme/custom_font="uid://7va88y7jwimj"
