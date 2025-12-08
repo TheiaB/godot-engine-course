@@ -30,11 +30,9 @@ func _physics_process(delta: float) -> void:
 	# apply gravity
 	velocity.y -= gravity * delta
 	
-	# movement_2d = movement without up/down
-	var movement_2d = Vector3(velocity.x, 0, velocity.z)
 	# rotate possum model towards where we're walking
-	if(movement_2d.length() > 1.0):
-		%Possum.look_at(transform.origin - movement_2d)
+	if(move_dir.length() > 1.0):
+		%Possum.look_at(transform.origin - Vector3(velocity.x, 0, velocity.z))
 
 	move_and_slide()
 
