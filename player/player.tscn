@@ -7,8 +7,19 @@ script/source = "extends CharacterBody3D
 
 @export var jump_force = 10
 @export var gravity = 10
+@export var speed = 5
 
 func _physics_process(delta: float) -> void:
+	var input_move = Input.get_vector(\"left\",\"right\",\"back\",\"forward\")
+
+	# apply speed
+	input_move *= speed
+	
+	# apply movement
+	velocity.x = -input_move.x
+	velocity.z = input_move.y
+	
+	# apply gravity
 	velocity.y -= gravity * delta
 	move_and_slide()
 

@@ -60,5 +60,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_eomlm")
 environment = SubResource("Environment_smnfn")
 
 [node name="Player" parent="." instance=ExtResource("4_yi3jx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9671421, 0.51951, -0.051859975)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9671421, 0.51951, 2.12649)
 jump_force = 8
