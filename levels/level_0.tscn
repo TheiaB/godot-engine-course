@@ -2,8 +2,8 @@
 
 [ext_resource type="Material" uid="uid://d3n7uhvhe5jah" path="res://world/grass_ground_material.tres" id="1_smnfn"]
 [ext_resource type="PackedScene" uid="uid://dk8qg0kxst2k5" path="res://robot.tscn" id="1_vfa6b"]
-[ext_resource type="ArrayMesh" uid="uid://dc6ty4t0wyttc" path="res://player/possum.obj" id="3_nu7sl"]
 [ext_resource type="ArrayMesh" uid="uid://8g00osvqdnwo" path="res://world/grass_mesh.obj" id="4_omks2"]
+[ext_resource type="PackedScene" uid="uid://ci4bjp5e2bu3p" path="res://player/player.tscn" id="4_yi3jx"]
 
 [sub_resource type="Gradient" id="Gradient_wwd78"]
 colors = PackedColorArray(0.26448134, 0.42514774, 0.17639181, 1, 0.60784316, 0.7529412, 0.2627451, 1)
@@ -51,10 +51,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9196925, 2.5382016, -2.699
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.321411, 2.381308, 0.6700646)
 
-[node name="Possum" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0756073, 0.51951, 0.31590307)
-mesh = ExtResource("3_nu7sl")
-
 [node name="GrassMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7396307, 0.49999988, -0.005893111)
 mesh = ExtResource("4_omks2")
@@ -62,3 +58,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_eomlm")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_smnfn")
+
+[node name="Player" parent="." instance=ExtResource("4_yi3jx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9671421, 0.51951, -0.051859975)
+jump_force = 8

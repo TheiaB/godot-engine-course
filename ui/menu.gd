@@ -15,3 +15,15 @@ func _on_quit_button_pressed() -> void:
 
 func _on_volume_slider_value_changed(value: float) -> void:
 	%VolumeLabel.text = "Volume "+str(value)
+
+
+
+func _physics_process(delta: float):
+	
+	var move_input = Input.get_vector('left', 'right', 'backward', 'forward')
+	
+	move_input = Vector2(1,0)
+	
+	print(move_input)
+	pass
+	
