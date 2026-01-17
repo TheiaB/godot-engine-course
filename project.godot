@@ -10,9 +10,9 @@ config_version=5
 
 [application]
 
-config/name="Godot Course (Second Run)"
+config/name="Godot Course (HfG)"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="uid://plvws2x35a8r"
+config/icon="uid://bm7ges8avorip"
 
 [display]
 
