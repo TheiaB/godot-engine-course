@@ -46,6 +46,9 @@ func _input(event: InputEvent):
 		%spring.rotation.y -= event.relative.x * sensitivity
 		# limit vertical rotation 
 		%spring.rotation_degrees.x = clampf(%spring.rotation_degrees.x,-45,45)
+	
+	if(event.is_action_pressed(\"exit\")):
+		get_tree().quit()
 "
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rkbax"]
