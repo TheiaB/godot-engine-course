@@ -1,65 +1,70 @@
-[gd_scene load_steps=4 format=3 uid="uid://ci4bjp5e2bu3p"]
+[gd_scene load_steps=14 format=3 uid="uid://ci4bjp5e2bu3p"]
 
-[ext_resource type="ArrayMesh" uid="uid://dc6ty4t0wyttc" path="res://player/possum.obj" id="1_oul6g"]
+[ext_resource type="Script" uid="uid://b5wxs8oyywthu" path="res://player/player_script.gd" id="1_rkbax"]
+[ext_resource type="PackedScene" uid="uid://cnns3j307boq7" path="res://player/possum.glb" id="2_rkbax"]
+[ext_resource type="Texture2D" uid="uid://df02nbxe22t4u" path="res://player/possum.png" id="3_g1dw6"]
 
-[sub_resource type="GDScript" id="GDScript_oul6g"]
-script/source = "extends CharacterBody3D
-
-@export var jump_force = 10.0
-@export var gravity = 10
-@export var walking_speed = 5
-@export var sensitivity = 0.01
-
-func _ready():
-	# beginning of game, capture mouse
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
-func _physics_process(delta: float) -> void:
-	var move_input = Input.get_vector(\"left\",\"right\",\"back\",\"forward\")
-	
-	# rotate movement input towards where the camera is looking
-	var move_dir = move_input.rotated(%spring.rotation.y)
-	
-	# apply walking speed
-	move_dir *= walking_speed
-	
-	# apply movement
-	velocity.x = -move_dir.x
-	velocity.z = move_dir.y
-	
-	# apply gravity
-	velocity.y -= gravity * delta
-	
-	# rotate possum model towards where we're walking
-	if(move_dir.length() > 1.0):
-		%Possum.look_at(transform.origin - Vector3(velocity.x, 0, velocity.z))
-
-	move_and_slide()
-
-func _input(event: InputEvent):
-	if(event.is_action_pressed(\"jump\") and is_on_floor()):
-		print(\"jump!\")
-		velocity.y = jump_force
-	if(event is InputEventMouseMotion):
-		# apply mouse rotation
-		%spring.rotation.x += event.relative.y * sensitivity
-		%spring.rotation.y -= event.relative.x * sensitivity
-		# limit vertical rotation 
-		%spring.rotation_degrees.x = clampf(%spring.rotation_degrees.x,-45,45)
-	
-	if(event.is_action_pressed(\"exit\")):
-		get_tree().quit()
-"
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yw30f"]
+albedo_texture = ExtResource("3_g1dw6")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rkbax"]
 height = 2.2841797
 
-[node name="Player" type="CharacterBody3D"]
-script = SubResource("GDScript_oul6g")
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g1dw6"]
+animation = &"FallingLoop"
 
-[node name="Possum" type="MeshInstance3D" parent="."]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g6k8r"]
+animation = &"IdleLoop"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_boad6"]
+animation = &"WalkingLoop"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_rgyib"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_g6k8r")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_boad6")
+blend_point_1/pos = 1.0
+min_space = 0.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g1dw6"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yw30f"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "not is_on_floor()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qjkh3"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "is_on_floor()"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hg6s5"]
+states/FallingLoop/node = SubResource("AnimationNodeAnimation_g1dw6")
+states/FallingLoop/position = Vector2(416.57602, 194)
+states/IdleWalkBlend/node = SubResource("AnimationNodeBlendSpace1D_rgyib")
+states/IdleWalkBlend/position = Vector2(416.80002, 99.76)
+transitions = ["Start", "IdleWalkBlend", SubResource("AnimationNodeStateMachineTransition_g1dw6"), "IdleWalkBlend", "FallingLoop", SubResource("AnimationNodeStateMachineTransition_yw30f"), "FallingLoop", "IdleWalkBlend", SubResource("AnimationNodeStateMachineTransition_qjkh3")]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_rkbax")
+
+[node name="Possum" parent="." instance=ExtResource("2_rkbax")]
 unique_name_in_owner = true
-mesh = ExtResource("1_oul6g")
+
+[node name="Skeleton3D" parent="Possum/Armature" index="0"]
+bones/0/rotation = Quaternion(-0.0011401279, -5.688567e-08, 0.005876108, 0.99998206)
+bones/1/rotation = Quaternion(-0.08603962, -0.07518381, -0.01253277, 0.99337184)
+bones/2/rotation = Quaternion(0.681955, -0.010154146, -0.0014613167, -0.7313223)
+bones/3/rotation = Quaternion(-0.0009512519, -0.0006285575, 0.5561373, -0.83108974)
+bones/4/position = Vector3(0.27064496, 0.1124176, 0.00025993594)
+bones/4/rotation = Quaternion(-0.6892742, -0.15777956, 0.6873817, 0.16587129)
+bones/5/rotation = Quaternion(0.00087686203, -0.0007287552, 0.6346602, 0.7727906)
+bones/6/position = Vector3(-0.26792806, 0.11874733, 0.000267214)
+bones/6/rotation = Quaternion(0.6834788, 0.18128298, 0.6812919, 0.18930016)
+
+[node name="Possum" parent="Possum/Armature/Skeleton3D" index="0"]
+material_override = SubResource("StandardMaterial3D_yw30f")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1420898, 0)
@@ -73,3 +78,12 @@ spring_length = -5.0
 [node name="Camera3D" type="Camera3D" parent="spring"]
 transform = Transform3D(-1.0000001, 0, 8.7422784e-08, 0, 1.0000001, 0, -8.742277e-08, 0, -0.9999999, 0, 0, 0)
 current = true
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("%Possum")
+tree_root = SubResource("AnimationNodeStateMachine_hg6s5")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../Possum/AnimationPlayer")
+parameters/IdleWalkBlend/blend_position = 1.0
+
+[editable path="Possum"]

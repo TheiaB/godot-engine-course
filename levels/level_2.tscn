@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dbhvcbu07sbvv"]
+[gd_scene load_steps=27 format=3 uid="uid://dbhvcbu07sbvv"]
 
 [ext_resource type="PackedScene" uid="uid://yffe0iru2mw4" path="res://world/meshes/grass_scene.tscn" id="1_dfjjl"]
 [ext_resource type="Texture2D" uid="uid://d25pksn6r85y0" path="res://world/textures/grass_color_2k.png" id="1_v5uil"]
@@ -9,6 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://ci4bjp5e2bu3p" path="res://player/player.tscn" id="4_ep78u"]
 [ext_resource type="Texture2D" uid="uid://bjvfqq3nigk7b" path="res://world/textures/concrete_normal_2k.png" id="6_at1ld"]
 [ext_resource type="Texture2D" uid="uid://s2wyre8hyp2t" path="res://world/sky.png" id="9_at1ld"]
+[ext_resource type="PackedScene" uid="uid://wllxbb1itrst" path="res://item/food_item.tscn" id="10_vm7no"]
+[ext_resource type="ArrayMesh" uid="uid://d3gv3yw2rbf14" path="res://item/banana.obj" id="11_hbb88"]
+[ext_resource type="AudioStream" uid="uid://da1fbjphv0hth" path="res://sound/ambience-forest.mp3" id="12_hbb88"]
+[ext_resource type="PackedScene" uid="uid://yb6n2hlraib6" path="res://ui/ingame_ui.tscn" id="13_wcjpl"]
 
 [sub_resource type="Gradient" id="Gradient_v2l2l"]
 offsets = PackedFloat32Array(0.2, 1)
@@ -125,20 +129,8 @@ volumetric_fog_albedo = Color(0.3764706, 0.5686275, 0.6784314, 1)
 volumetric_fog_sky_affect = 0.0
 
 [sub_resource type="FogMaterial" id="FogMaterial_at1ld"]
-density = 0.1
+density = 0.05
 albedo = Color(0.54027283, 0.7998787, 0.95672363, 1)
-
-[sub_resource type="Animation" id="Animation_at1ld"]
-resource_name = "rotate_cube"
-
-[sub_resource type="Animation" id="Animation_sd18g"]
-length = 0.001
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_vm7no"]
-_data = {
-&"RESET": SubResource("Animation_sd18g"),
-&"rotate_cube": SubResource("Animation_at1ld")
-}
 
 [node name="Node3D" type="Node3D"]
 
@@ -151,17 +143,11 @@ cull_margin = 500.0
 top_level = true
 metadata/_edit_lock_ = true
 
-[node name="Player" parent="." instance=ExtResource("4_ep78u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.921234, 20.319517, -17.258522)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_hbb88")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.70024925, 0.7138986, 0, -0.7138986, 0.70024925, 0, 29.491299, -16.648445)
-
-[node name="Player2" parent="." instance=ExtResource("4_ep78u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.300926, -1.180483, 23.649406)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 45.48301, 13.630128, 29.605072)
@@ -170,11 +156,29 @@ spot_range = 54.58799
 spot_angle = 53.437496
 
 [node name="FogVolume" type="FogVolume" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.462463, -23.334944, 25.719654)
-size = Vector3(128, 64, 128)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.462463, -11.027327, 25.719654)
+size = Vector3(128, 32.691406, 128)
 material = SubResource("FogMaterial_at1ld")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_vm7no")
-}
+[node name="ItemArea3D" parent="." instance=ExtResource("10_vm7no")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.573822, -0.5753841, 25.869797)
+
+[node name="ItemArea3D2" parent="." instance=ExtResource("10_vm7no")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.810158, -0.96308583, 30.087807)
+
+[node name="ItemArea3D3" parent="." instance=ExtResource("10_vm7no")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.688004, -0.8025971, 26.536942)
+
+[node name="Apple" parent="ItemArea3D3" index="0"]
+mesh = ExtResource("11_hbb88")
+
+[node name="AmbienceForest" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_hbb88")
+autoplay = true
+
+[node name="Control" parent="." instance=ExtResource("13_wcjpl")]
+
+[node name="Player" parent="." instance=ExtResource("4_ep78u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.775322, -1.1804805, 25.093872)
+
+[editable path="ItemArea3D3"]

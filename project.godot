@@ -14,6 +14,10 @@ config/name="Godot Course (HfG)"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="uid://bm7ges8avorip"
 
+[autoload]
+
+GameManager="*res://globals/game_manager.gd"
+
 [display]
 
 window/size/viewport_width=1280

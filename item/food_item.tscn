@@ -1,0 +1,126 @@
+[gd_scene load_steps=12 format=3 uid="uid://wllxbb1itrst"]
+
+[ext_resource type="ArrayMesh" uid="uid://b67huvhc6qhus" path="res://item/apple.obj" id="1_qfwa7"]
+[ext_resource type="Script" uid="uid://dhoh7j2oyf7ih" path="res://item/food_item.gd" id="1_t8gcc"]
+[ext_resource type="AudioStream" uid="uid://cf8en85ycsthj" path="res://item/sfx-cronch-1.wav" id="3_waouw"]
+[ext_resource type="AudioStream" uid="uid://dyq812hh24j3u" path="res://item/sfx-cronch-2.wav" id="4_ag4so"]
+[ext_resource type="AudioStream" uid="uid://bar7fc365t1ne" path="res://item/sfx-cronch-3.wav" id="5_ity1l"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_t8gcc"]
+radius = 1.0
+
+[sub_resource type="Animation" id="Animation_waouw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Apple:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Apple:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Apple:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xcqcx"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Apple:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333334, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t8gcc"]
+resource_name = "hover"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Apple:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.2831855, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Apple:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.0333333, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.5330155, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xcqcx"]
+_data = {
+&"RESET": SubResource("Animation_waouw"),
+&"death": SubResource("Animation_xcqcx"),
+&"hover": SubResource("Animation_t8gcc")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ag4so"]
+streams_count = 3
+stream_0/stream = ExtResource("3_waouw")
+stream_1/stream = ExtResource("4_ag4so")
+stream_2/stream = ExtResource("5_ity1l")
+
+[node name="ItemArea3D" type="Area3D"]
+script = ExtResource("1_t8gcc")
+
+[node name="Apple" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_qfwa7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_t8gcc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_xcqcx")
+}
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ag4so")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]
