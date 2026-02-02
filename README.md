@@ -21,11 +21,10 @@ External Resources
 - [Kenney.nl starter kits](https://kenney.nl/starter-kits) and other [asset library templates](https://godotengine.org/asset-library/asset?filter=&category=8&godot_version=&cost=&sort=updated)
 
 ## 📝 Other great resources
-❤️ [Itch.io](https://itch.io/game-assets) (assets, tools)
-🎨  [Texture Can](https://www.texturecan.com/), [Share Textures](https://www.sharetextures.com/textures), [polyhaven](https://polyhaven.com) [Ambient CG](https://ambientcg.com/), [Tiny Texture Packs](https://screamingbrainstudios.itch.io/)
-🌴 Other assets (3d models etc.) : [Open Game Art](https://opengameart.org/), [kenney](https://kenney.nl/assets), [Quaternius](https://quaternius.com), [Craftpix freebies](https://craftpix.net/freebies)
-🤖 Godot specific : [Godot Asset Library](https://godotassetlibrary.com) and [Godot Shaders](https://godotshaders.com/)
-🎧 Audio : [Free Sound](https://freesound.org/browse/tags/?f=tag:%22cc0%22) [Free music archive](https://freemusicarchive.org/home), [FreePD](https://freepd.com/)
-
-🛠️ Tools : [Spacescape](http://alexcpeterson.com/spacescape/) (space skybox), [Normal Map Online](https://cpetry.github.io/NormalMap-Online/) (fake 3d information for textures), [Terragen](https://www.youtube.com/watch?v=1w6TCOeNUp4) (2000s skyboxes)
+- ❤️ [Itch.io](https://itch.io/game-assets) (assets, tools)
+- 🎨  [Texture Can](https://www.texturecan.com/), [Share Textures](https://www.sharetextures.com/textures), [polyhaven](https://polyhaven.com) [Ambient CG](https://ambientcg.com/), [Tiny Texture Packs](https://screamingbrainstudios.itch.io/)
+- 🌴 Other assets (3d models etc.) : [Open Game Art](https://opengameart.org/), [kenney](https://kenney.nl/assets), [Quaternius](https://quaternius.com), [Craftpix freebies](https://craftpix.net/freebies)
+- 🤖 Godot specific : [Godot Asset Library](https://godotassetlibrary.com) and [Godot Shaders](https://godotshaders.com/)
+- 🎧 Audio : [Free Sound](https://freesound.org/browse/tags/?f=tag:%22cc0%22) [Free music archive](https://freemusicarchive.org/home), [FreePD](https://freepd.com/)
+- 🛠️ Tools : [Spacescape](http://alexcpeterson.com/spacescape/) (space skybox), [Normal Map Online](https://cpetry.github.io/NormalMap-Online/) (fake 3d information for textures), [Terragen](https://www.youtube.com/watch?v=1w6TCOeNUp4) (2000s skyboxes)
 
