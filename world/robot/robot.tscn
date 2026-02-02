@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dk8qg0kxst2k5"]
+
+[ext_resource type="Texture2D" uid="uid://plvws2x35a8r" path="res://world/robot/icon.svg" id="1_3cn6f"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dfm56"]
+radius = 0.75
+
+[node name="Robot" type="RigidBody3D" unique_id=1351254910]
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=850565635]
+texture = ExtResource("1_3cn6f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1872921250]
+shape = SubResource("SphereShape3D_dfm56")

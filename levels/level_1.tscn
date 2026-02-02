@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://0xc5ccunyudn"]
+[gd_scene format=3 uid="uid://0xc5ccunyudn"]
 
 [ext_resource type="Material" uid="uid://d3n7uhvhe5jah" path="res://world/grass_ground_material.tres" id="1_kx6l7"]
-[ext_resource type="PackedScene" uid="uid://dk8qg0kxst2k5" path="res://robot.tscn" id="2_n46q3"]
+[ext_resource type="PackedScene" uid="uid://dk8qg0kxst2k5" path="res://world/robot/robot.tscn" id="2_n46q3"]
 [ext_resource type="ArrayMesh" uid="uid://8g00osvqdnwo" path="res://world/grass_mesh.obj" id="3_btoec"]
 [ext_resource type="PackedScene" uid="uid://ci4bjp5e2bu3p" path="res://player/player.tscn" id="4_gwceb"]
 
@@ -18,43 +18,76 @@ albedo_texture = SubResource("GradientTexture1D_40rfo")
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="GDScript" id="GDScript_kx6l7"]
+script/source = "extends Area3D
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_body_entered(body: Node3D) -> void:
+	print(body.name)
+	pass # Replace with function body.
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n46q3"]
+size = Vector3(1.9130859, 3.0957031, 1.7764893)
+
+[node name="Node3D" type="Node3D" unique_id=353115513]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=155841085]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9008789, 0, 0.7585144)
 use_collision = true
 size = Vector3(6.879883, 1, 9.211365)
 material = ExtResource("1_kx6l7")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=1423694559]
 transform = Transform3D(1, 0, 0, 0, 0.9807137, -0.19544978, 0, 0.19544978, 0.9807137, -1.0254743, 0.3057015, -2.3932037)
 material_override = ExtResource("1_kx6l7")
 use_collision = true
 size = Vector3(6.879883, 1, 2.9079285)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=2141347182]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96590114, 1.737793, 3.8467226)
 use_collision = true
 size = Vector3(6.879883, 4.475586, 1.8757324)
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGBox3D2"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGBox3D2" unique_id=63796783]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 operation = 2
 radius = 1.9912109
 
-[node name="Robot" parent="." instance=ExtResource("2_n46q3")]
+[node name="Robot" parent="." unique_id=297465466 instance=ExtResource("2_n46q3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75506115, 2.5382016, -2.6991997)
 
-[node name="Robot2" parent="." instance=ExtResource("2_n46q3")]
+[node name="Robot2" parent="." unique_id=2139201398 instance=ExtResource("2_n46q3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9196925, 2.5382016, -2.6991997)
 
-[node name="GrassMesh" type="MeshInstance3D" parent="."]
+[node name="GrassMesh" type="MeshInstance3D" parent="." unique_id=1853956939]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7396307, 0.49999988, -0.005893111)
 mesh = ExtResource("3_btoec")
 surface_material_override/0 = SubResource("StandardMaterial3D_eomlm")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1891195715]
 environment = SubResource("Environment_smnfn")
 
-[node name="Player" parent="." instance=ExtResource("4_gwceb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.504125, 0.51951, -1.1427057)
+[node name="Player" parent="." unique_id=707085070 instance=ExtResource("4_gwceb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0538642, 0.51951, -0.002071619)
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1126789638]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.632948, 2.2669976)
+script = SubResource("GDScript_kx6l7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1396916043]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45654297, -1.0478516, 0.38824463)
+shape = SubResource("BoxShape3D_n46q3")
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]

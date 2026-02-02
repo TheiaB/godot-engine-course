@@ -16,8 +16,8 @@ func _on_body_entered(body: Node3D) -> void:
 		print("monitoring false")
 		$AudioStreamPlayer3D.play()
 		hide()
-		GameManager.collectedFood.emit()
 		GameManager.foot_eaten += 1
+		GameManager.collectedFood.emit()
 		#$AnimationPlayer.play("death")
 		#queue_free()
 

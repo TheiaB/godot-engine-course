@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dbhvcbu07sbvv"]
+[gd_scene format=3 uid="uid://dbhvcbu07sbvv"]
 
 [ext_resource type="PackedScene" uid="uid://yffe0iru2mw4" path="res://world/meshes/grass_scene.tscn" id="1_dfjjl"]
 [ext_resource type="Texture2D" uid="uid://d25pksn6r85y0" path="res://world/textures/grass_color_2k.png" id="1_v5uil"]
@@ -132,9 +132,9 @@ volumetric_fog_sky_affect = 0.0
 density = 0.05
 albedo = Color(0.54027283, 0.7998787, 0.95672363, 1)
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" unique_id=788558638]
 
-[node name="Terrain3D" type="Terrain3D" parent="."]
+[node name="Terrain3D" type="Terrain3D" parent="." unique_id=1191066263]
 data_directory = "res://world/terrain"
 material = SubResource("Terrain3DMaterial_0srwa")
 assets = SubResource("Terrain3DAssets_ilhis")
@@ -143,42 +143,42 @@ cull_margin = 500.0
 top_level = true
 metadata/_edit_lock_ = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1617678400]
 environment = SubResource("Environment_hbb88")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1372282839]
 transform = Transform3D(1, 0, 0, 0, 0.70024925, 0.7138986, 0, -0.7138986, 0.70024925, 0, 29.491299, -16.648445)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1764588158]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 45.48301, 13.630128, 29.605072)
 light_energy = 9.0
 spot_range = 54.58799
 spot_angle = 53.437496
 
-[node name="FogVolume" type="FogVolume" parent="."]
+[node name="FogVolume" type="FogVolume" parent="." unique_id=96106836]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.462463, -11.027327, 25.719654)
 size = Vector3(128, 32.691406, 128)
 material = SubResource("FogMaterial_at1ld")
 
-[node name="ItemArea3D" parent="." instance=ExtResource("10_vm7no")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.573822, -0.5753841, 25.869797)
+[node name="ItemArea3D" parent="." unique_id=1667006960 instance=ExtResource("10_vm7no")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.945793, 4.5044136, 15.427893)
 
-[node name="ItemArea3D2" parent="." instance=ExtResource("10_vm7no")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.810158, -0.96308583, 30.087807)
+[node name="ItemArea3D2" parent="." unique_id=1722368779 instance=ExtResource("10_vm7no")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.857285, 10.889828, 41.52212)
 
-[node name="ItemArea3D3" parent="." instance=ExtResource("10_vm7no")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.688004, -0.8025971, 26.536942)
+[node name="ItemArea3D3" parent="." unique_id=1534686820 instance=ExtResource("10_vm7no")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.688004, 7.017888, 30.327648)
 
 [node name="Apple" parent="ItemArea3D3" index="0"]
 mesh = ExtResource("11_hbb88")
 
-[node name="AmbienceForest" type="AudioStreamPlayer" parent="."]
+[node name="AmbienceForest" type="AudioStreamPlayer" parent="." unique_id=2064039404]
 stream = ExtResource("12_hbb88")
 autoplay = true
 
-[node name="Control" parent="." instance=ExtResource("13_wcjpl")]
+[node name="Control" parent="." unique_id=1576437513 instance=ExtResource("13_wcjpl")]
 
-[node name="Player" parent="." instance=ExtResource("4_ep78u")]
+[node name="Player" parent="." unique_id=1194199753 instance=ExtResource("4_ep78u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.775322, -1.1804805, 25.093872)
 
 [editable path="ItemArea3D3"]
